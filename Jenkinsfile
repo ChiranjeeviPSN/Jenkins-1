@@ -4,9 +4,17 @@ pipeline {
     }
 
     options {
-        timeout(time: 10, unit: 'SECONDS')
+        timeout(time: 10, unit: 'MINUTES')
         disableConcurrentBuilds()
-        retry(2)
+       // retry(2)
+    }
+
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        choice(name: 'CHOICE', choices: ['one', 'two', 'three'], description: 'pick something')
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'enter a password')
     }
 
     stages {
@@ -27,6 +35,16 @@ pipeline {
             steps {
                 sh 'echo This is build'
                 error 'pipeline failed'
+            }
+        }
+
+        stage('Print params') {
+            steps {
+                echo "Hello ${params.PERSON}"
+                echo "Biography: ${params.BIOGRAPHY}"
+                echo "Toggle: ${params.TOGGLE}"
+                echo "Choice: ${params.CHOICE}"
+                echo "Password: ${password.PASSWORD}"
             }
         }
     }
