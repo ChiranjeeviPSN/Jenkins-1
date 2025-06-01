@@ -5,16 +5,22 @@ pipeline {
 
     stages {
         stage('Build') {
-            sh 'echo This is build'
+            steps {
+                sh 'echo This is build'
+            }
         }
 
         stage('Test') { 
-            sh 'echo This is test'
+            steps {
+                sh 'echo This is build'
+            }
         }
 
         stage('Deploy') {
-            sh 'echo This is deploy'
-            error 'pipeline failed'
+            steps {
+                sh 'echo This is build'
+                error 'pipeline failed'
+            }
         }
     }
 }
