@@ -4,13 +4,14 @@ pipeline {
     }
 
     options {
-        timeout(time: 0, unit: 'SECONDS')
+        timeout(time: 1, unit: 'SECONDS')
     }
 
     stages {
         stage('Build') {
             steps {
                 sh 'echo This is build'
+                sh 'sleep 10'
             }
         }
 
