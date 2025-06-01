@@ -27,13 +27,13 @@ pipeline {
 
         stage('Test') { 
             steps {
-                sh 'echo This is build'
+                sh 'echo This is test'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'echo This is build'
+                sh 'echo This is deploy'
                 error 'pipeline failed'
             }
         }
